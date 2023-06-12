@@ -1,0 +1,252 @@
+{% load static %}
+{#{% load cache %}#}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}home{% endblock %}</title>
+    <link href="{% static 'css/foundation.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:900" rel="stylesheet">
+</head>
+<body>
+<div class="ad x-rec-box" style="background: url('https://cdn.sandals.com/beaches/v11/site-elements/general/best-family-vaction.jpg') no-repeat center center; background-size: cover"></div>
+<div class="grid-x navs">
+  <div class="cell small-12">
+    <div class="off-canvas-wrapper">
+      <div class="off-canvas position-left" id="leftNavbar" data-off-canvas data-transition="overlap">
+    <div class="grid-x">
+        <div class="navbar-brand cell small-9"><a href="{% url 'homepage' %}"><img src="{% static 'images/logo.png' %}" />  </a></div>
+        <button type="button" class="button cell small-3" data-toggle="leftNavbar"><i class="fa fa-times fa-2x"></i></button>
+        <ul class="vertical menu accordion-menu" data-accordion-menu>
+            <li>
+            <a href="#">Gallery</a>
+                <ul class="menu vertical nested">
+                    <li><a  href="#">Images</a></li>
+                    <li><a  href="#">Videos</a></li>
+                </ul>
+            </li>
+            <li><a href="{% url 'articles:ArticleList' %}">Articles</a></li>
+            <li><a href="{% url 'places:PlaceList' %}">Places</a></li>
+            <li><a href="{% url 'events:EventList' %}">Events</a></li>
+            <li><a href="{% url 'travels:TravelList' %}">Travels</a></li>
+        </ul>
+      </div>
+      <div class="social-icons text-center">
+            <h6>Contact With Us</h6>
+            <hr>
+            <ul class="menu">
+                <li><a class="button" href="https://www.facebook.com"><i class="fa fa-facebook"></i></a></li>
+                <li><a class="button" href="https://www.twitter.com"><i class="fa fa-twitter"></i></a></li>
+                <li><a class="button" href="https://www.instagram.com"><i class="fa fa-instagram"></i></a></li>
+            </ul>
+      </div>
+    </div>
+      </div>
+        <div class="off-canvas-content" data-off-canvas-content>
+                <div class="large-12">
+                    <div class="navbar" id="nav-fix">
+                        <div class="grid-container">
+                            <div class="grid-x">
+                                <div class="cell small-8 medium-3">
+                                    <button type="button" class="button" data-toggle="leftNavbar"><i class="fa fa-bars fa-2x"></i></button>
+                                    <span class="navbar-brand">
+                                        <a href="{% url 'homepage' %}">
+                                            <img src="{% static 'images/logo.png' %}" />
+                                        </a>
+                                    </span>
+                                </div>
+                                <div class="cell hide-for-small-only medium-6">
+                                    <ul class="dropdown menu" data-dropdown-menu>
+                                        <li>
+                                        <a href="#">Gallery</a>
+                                            <ul class="menu">
+                                                <li><a  href="#">Images</a></li>
+                                                <li><a  href="#">Videos</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="{% url 'articles:ArticleList' %}">Articles</a></li>
+                                        <li><a href="{% url 'places:PlaceList' %}">Places</a></li>
+                                        <li><a href="{% url 'events:EventList' %}">Events</a></li>
+                                        <li><a href="{% url 'travels:TravelList' %}">Travels</a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                                <div class="cell hide-for-small-only medium-3">
+                                    <ul class="menu align-right">
+                                        <li><a href="https://www.facebook.com"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="https://www.twitter.com"><i class="fa fa-twitter"></i></a></li>
+                                        <button class="button"><i class="fa fa-search"></i></button>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+  </div>
+<div class="grid-container content">
+    {% ifequal request.path '/' %}
+    <div id="articles" class="grid-x">
+        {% for article in articles|slice:":3" %}
+        <div class="cell {% if forloop.counter == 1 %}small-12 medium-6{% else %} small-6 medium-3{% endif %} article article-{{ forloop.counter }}">
+            {% if forloop.counter == 1 %}
+            <div class="article-img" style="background: url('{{article.cover_img.url}}') no-repeat center center; background-size: cover">
+                <div class="article-content">
+                    <mark class="article-title"><a href="{% url 'articles:ArticleDetail' article.slug %}">{{ article.title|truncatechars:25 }}</a></mark>
+                    <span class="cell hide-for-small-only article-info">
+                        By {{article.user.username}} &nbsp; <i class="fa fa-clock-o"></i> {{ article.created|date:'M n, o' }}
+                    </span>
+                </div>
+            </div>
+            {% else %}
+            <div class="article-img rec-box" style="background: url('{{article.cover_img.url}}') no-repeat center center; background-size: cover"></div>
+            <div class="article-content">
+                <h4 class="article-title">
+                    <a href="{% url 'articles:ArticleDetail' article.slug %}">{{ article.title }}</a>
+                </h4>
+                <div class="cell hide-for-small-only medium-12 article-info">
+                    By <a class="article-author" href="#">{{article.user.username}}</a> &nbsp; <i class="fa fa-clock-o"></i> {{ article.created|date:'M n, o' }}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    {% endifequal %}
+    <div class="grid-x">
+        <div class="cell small-12 medium-8">
+        {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+            <div{% if message.tags %} class="callout {{ message.tags }}"{% endif %}>{{ message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% block content %}{% endblock %}
+        </div>
+{#        {% cache 7200 RightSideBar %}#}
+        {% block right_sidebar %}
+        <div class="cell small-12 medium-3 medium-offset-1 right-sidebar">
+            {% if popular_events %}
+            <br>
+            <h4 class="cell small-12">Upcoming events</h4>
+            <div class="latest-events grid-x">
+                {% for event in popular_events %}
+                <div class="cell small-12 medium-12">
+                    <div class="event grid-x">
+                        <div class="event-header small-12 grid-x">
+                            <div class="cell small-10 small-offset-1 event-details">
+                                <h5><a href="{% url 'events:EventDetail' event.pk %}">{{ event.title|truncatechars:40 }}</a></h5>
+                            </div>
+                            <div class="cell small-2 small-offset-1 text-center">
+                                <div class="day-month">
+                                    <div class="month">{{ event.start|date:'M' }}</div>
+                                    <div class="day">{{ event.start|date:'j' }}</div>
+                                </div>
+                            </div>
+                            <div class="cell small-7 small-offset-1 event-details">
+                                <p class="event-duration">{{ event.start|date:'M. j, o, f A' }}</p>
+                                <p class="event-address">
+                                    <a href="{% url 'places:PlaceDetail' event.location.pk %}" style="color: #000;">
+                                        <i class="fa fa-map-marker"></i> &nbsp;{{ event.location.location }}
+                                    </a> <br>
+                                    {{ event.users_num }} person{{ event.users_num|pluralize }} are going.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            <br>
+            <h4 class="right-sidebar-headers cell small-12">Top Authors</h4>
+            <div class="grid-x trending-articles">
+                {% for author in popular_authors %}
+                    <div class="cell small-12 article-item grid-x">
+                        <div class="cell small-4 article-img square-box" style="background: url('{{author.avatar.url}}') no-repeat center center;background-size: cover; height: 100%"></div>
+                        <div class="cell small-8 article-content">
+                            <h4 class="article-title"><a href="#{# url 'account:ArticleDetail' author.username #}">{{ author.get_full_name }}</a></h4>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <br>
+            <h4 class="right-sidebar-headers cell small-12">Trending Articles</h4>
+            <div class="grid-x trending-articles">
+                {% for article in popular_articles %}
+                    <div class="cell small-12 article-item grid-x">
+                        <div class="cell small-4 article-img square-box" style="background: url('{{article.cover_img.url}}') no-repeat center center;background-size: cover; height: 100%"></div>
+                        <div class="cell small-8 article-content">
+                            <h4 class="article-title">
+                                <a href="{% url 'articles:ArticleDetail' article.slug %}">{{ article.title|truncatechars:27 }}</a>
+                            </h4>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endblock %}
+    </div>
+    {% ifequal request.path '/' %}
+    <div class="ad x-rec-box" style="width: 100%;margin: 10px 0;background: url('http://www.afta.com.au/resize/uploads/393/atas_wish_ad_final_001.png+w=450') no-repeat center top; background-size: cover"></div>
+    <h2 class="travel-header cell small-12" style="margin-top: 20px;">Upcoming travels</h2>
+    <div class="grid-x grid-margin-x upcoming-travels">
+        {% for travel in travels %}
+            <div class="cell small-12 medium-4 travel-item grid-x">
+                <div class="cell small-12 travel-img rec-box" style="background: url('{{travel.images.first.image.url}}') no-repeat center center;background-size: cover; height: 100%">
+                {% if travel.has_offer %}
+                    <span>Offer</span>
+                {% endif %}
+                </div>
+                <div class="cell small-12 travel-content">
+                    <h5 class="travel-title"><a href="{% url 'travels:TravelDetail' travel.pk %}">{{ travel.title }}</a></h5>
+                    <h6 class="travel-price">{% if travel.offer %}
+                        $ {{ travel.get_price_difference }} &nbsp; <del>${{ travel.price }}</del>
+                    {% else %}
+                        ${{ travel.price }}
+                    {% endif %}
+                    </h6>
+                    <h6 class="duration"><i class="fa fa-clock-o"></i> {{ travel.duration }} day{{ travel.duration|pluralize }}</h6>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    {% endifequal %}
+    <div class="ad x-rec-box" style="background: url('https://codropspz-tympanus.netdna-ssl.com/codrops/wp-content/uploads/2012/01/image1mpd.png') no-repeat center center; background-size: cover"></div>
+</div>
+
+<div class="site-footer text-center">
+    <div class="sitemap">
+        <ul class="menu align-center social-link">
+            <li><a class="button" href="https://www.facebook.com"><i class="fa fa-facebook"></i></a></li>
+            <li><a class="button" href="https://www.twitter.com"><i class="fa fa-twitter"></i></a></li>
+            <li><a class="button" href="https://www.instagram.com"><i class="fa fa-instagram"></i></a></li>
+        </ul>
+
+        <ul class="menu align-center">
+                <li><a href="{% url 'articles:ArticleList' %}">Articles</a></li>
+            <li><a href="{% url 'places:PlaceList' %}">Places</a></li>
+            <li><a href="{% url 'events:EventList' %}">Events</a></li>
+            <li><a href="{% url 'travels:TravelList' %}">Travels</a></li>
+        </ul>
+    </div>
+    <div class="footer">
+        Copyright &copy;  Magazine | Powered by CAMP Agency
+    </div>
+</div>
+<button class="to-top button">
+    <i class="fa fa-angle-up"></i>
+    <div>TO TOP</div>
+</button>
+{% block scripts %}
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/foundation.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+{% endblock %}
+</body>
+</html>

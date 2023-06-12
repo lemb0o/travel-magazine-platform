@@ -1,0 +1,19 @@
+{% extends 'home/base.html' %}
+{% block title %}{{ place.title|truncatewords:12 }} | Place{% endblock %}
+{% block content %}
+    <div class="place-page">
+        <div class="grid-x grid-padding-x">
+            <div class="cell small-12 medium-12">
+                <div class="rec-box" style="background: url('{{place.images.first.image.url}}') no-repeat center center;
+                        background-size: cover">
+                </div>
+                <div class="caption">
+                    <h4 class="">{{ place.name }}</h4>
+                    <p class="">
+                        {{ place.description|safe }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

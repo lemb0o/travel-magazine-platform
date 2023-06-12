@@ -1,0 +1,22 @@
+{% extends 'home/base.html' %}
+{% block title %}Users{% endblock %}
+{% block content %}
+    <div id="articles" class="grid-x grid-padding-x">
+        {% for user in users %}
+        <div class="cell small-4 large-4">
+            <div style="background: url('{{user.avatar.url}}') no-repeat center center; height: 40vh; background-size: cover">
+
+            </div>
+            <div class="caption">
+                <h4 class="">
+                    {{ user.get_full_name }}</h4>
+                <p class="">
+                    {{ article.biography|truncatewords:15 }}</p>
+            </div>
+            <a href="{% url 'account:UserDetail' article.pk %}" class="">
+                see more user info.
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}

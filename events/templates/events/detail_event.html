@@ -1,0 +1,19 @@
+{% extends 'home/base.html' %}
+{% block title %}{{ event.title|truncatewords:12 }} | Event{% endblock %}
+{% block content %}
+    <div class="event-page">
+        <div class="grid-x grid-padding-x">
+            <div class="cell small-12">
+                <div class="rec-box" style="background: url('{{event.images.first.image.url}}') no-repeat center center;
+                        background-size: cover;">
+                </div>
+                <div class="caption">
+                    <h4 class="">{{ event.title }}</h4>
+                    <p class="">
+                        {{ event.description|safe }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

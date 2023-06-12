@@ -1,0 +1,22 @@
+{% extends 'home/base.html' %}
+{% block title %}{{ travel.title|truncatewords:12 }} | Travel{% endblock %}
+{% block content %}
+    <div class="grid-x grid-padding-x">
+        <div class="cell small-12">
+            <div style="background: url('{{travel.images.first.image.url}}') no-repeat center center; height: 40vh; background-size: cover">
+            </div>
+            <div class="caption">
+                <h4 class="">{{ travel.title }}</h4>
+                <p class="">
+                    {{ travel.description|safe }}
+                </p>
+            </div>
+            <h6 class="travel-price">{% if travel.offer %}
+                $ {{ travel.get_price_difference }} &nbsp; <del>${{ travel.price }}</del>
+                {% else %}
+                    ${{ travel.price }}
+                {% endif %}
+            </h6>
+        </div>
+    </div>
+{% endblock %}

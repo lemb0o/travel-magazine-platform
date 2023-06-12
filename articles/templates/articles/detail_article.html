@@ -1,0 +1,19 @@
+{% extends 'home/base.html' %}
+{% block title %}{{ article.title|truncatewords:12 }} | Article{% endblock %}
+{% block content %}
+    <div class="article-page">
+    <div class="grid-x grid-padding-x">
+        <div class="cell small-12 medium-12">
+            <div class="rec-box" style="background: url('{{article.cover_img.url}}') no-repeat center center;
+                    background-size: cover">
+            </div>
+            <div class="caption">
+                <h4 class="">
+                    {{ article.title }}</h4>
+                <p class="">
+                    {{ article.description|safe }}</p>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}

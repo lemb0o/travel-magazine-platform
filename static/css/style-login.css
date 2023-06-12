@@ -1,0 +1,75 @@
+body {
+  font-family: "Work Sans", sans-serif; }
+  body a {
+    font-family: "Work Sans", sans-serif; }
+  body h1 {
+    font-family: "Work Sans", sans-serif; }
+  body h2 {
+    font-family: "Work Sans", sans-serif; }
+  body h3 {
+    font-family: "Work Sans", sans-serif; }
+  body h4 {
+    font-family: "Work Sans", sans-serif; }
+  body h5 {
+    font-family: "Work Sans", sans-serif; }
+  body h6 {
+    font-family: "Work Sans", sans-serif; }
+
+.nav {
+  box-shadow: 0 5px 25px 0 rgba(46, 61, 73, 0.2); }
+  .nav .logo a {
+    display: block;
+    text-align: center;
+    margin: auto;
+    max-width: 140px; }
+    .nav .logo a img {
+      max-height: 75px; }
+
+.signup-form {
+  padding-top: 20px;
+  border-radius: 5px;
+  box-shadow: 5px 5px 25px 0 rgba(46, 61, 73, 0.2);
+  transition: box-shadow .2s ease-in-out;
+  overflow: hidden;
+  margin: 50px auto; }
+  .signup-form:hover {
+    box-shadow: 2px 4px 8px 0 rgba(46, 61, 73, 0.2); }
+  .signup-form .button {
+    background-color: #ff3c36;
+    border-radius: 5px;
+    box-shadow: 5px 5px 25px 0 rgba(46, 61, 73, 0.2);
+    transition: box-shadow .2s ease-in-out;
+    overflow: hidden; }
+    .signup-form .button:hover {
+      box-shadow: 2px 4px 8px 0 rgba(46, 61, 73, 0.2); }
+  .signup-form .forgot-password {
+    display: inline;
+    padding-bottom: 8px; }
+
+.signin-form {
+  padding-top: 20px;
+  border-radius: 5px;
+  box-shadow: 5px 5px 25px 0 rgba(46, 61, 73, 0.2);
+  transition: box-shadow .2s ease-in-out;
+  overflow: hidden;
+  margin: 50px auto; }
+  .signin-form:hover {
+    box-shadow: 2px 4px 8px 0 rgba(46, 61, 73, 0.2); }
+  .signin-form .button {
+    background-color: #ff3c36;
+    border-radius: 5px;
+    box-shadow: 5px 5px 25px 0 rgba(46, 61, 73, 0.2);
+    transition: box-shadow .2s ease-in-out;
+    overflow: hidden; }
+    .signin-form .button:hover {
+      box-shadow: 2px 4px 8px 0 rgba(46, 61, 73, 0.2); }
+  .signin-form .forgot-password {
+    display: inline;
+    padding-bottom: 8px; }
+
+/* Medium and up */
+@media screen and (min-width: 40em) {
+  .signup-form {
+    width: 50%; }
+  .signin-form {
+    width: 25%; } }

@@ -1,0 +1,23 @@
+{% extends 'home/base.html' %}
+{% block title %}Articles{% endblock %}
+{% block content %}
+    <div class="articles-page">
+        <div class="grid-x">
+            {% for article in articles %}
+            <div class="cell small-12 article-item">
+                <div class="grid-x">
+                    <div class="cell small-4 list-box" style="background: url('{{article.cover_img.url}}') no-repeat center center;background-size: cover;">
+
+                    </div>
+                    <div class="cell small-8 article-content">
+                        <h4 class="article-title">
+                            <a href="{% url 'articles:ArticleDetail' article.slug %}">{{ article.title|truncatechars:59}}</a>
+                        </h4>
+                        <div class="article-description">{{ article.description|safe|truncatewords:15 }}</div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

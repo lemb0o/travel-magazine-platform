@@ -1,0 +1,24 @@
+{% extends 'home/base.html' %}
+{% block title %}Places{% endblock %}
+{% block content %}
+<div class="places-page">
+    <div class="grid-x">
+        {% for place in places %}
+        <div class="cell small-12 place-item">
+            <div class="grid-x">
+                <div class="cell small-12 medium-5 list-box" style="background: url('{{place.images.first.image.url}}') no-repeat center center;background-size: cover;"></div>
+                <div class="cell small-12 medium-7 place-content">
+                    <h4 class="place-title"><a href="{% url 'places:PlaceDetail' place.pk %}">{{ place.name|truncatechars:53 }}</a></h4>
+                    <div class="cell medium-12 place-info">
+                        <i class="fa fa-map-marker"></i> {{ place.location }}
+                    </div>
+                    <p class="cell hide-for-small-only place-description">
+                        {{ place.description|safe|truncatewords:15 }}
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

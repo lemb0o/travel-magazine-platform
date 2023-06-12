@@ -1,0 +1,21 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block title %}Create Event{% endblock %}
+{% block content %}
+    <div class="forms">
+        {% for error in form.errors %}<div class="cell small-12">{{ error }}</div>{% endfor %}%}
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form1.as_p }}
+            {{ form2.as_p }}
+            {{ form3.as_p }}
+            <button class="button" type="submit">Save</button>
+        </form>
+    </div>
+{% endblock %}
+{% block right_sidebar %}{% endblock %}
+{% block scripts %}
+    <script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+    <script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+    {{ block.super }}
+{% endblock %}

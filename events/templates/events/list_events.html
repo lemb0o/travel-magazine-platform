@@ -1,0 +1,128 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block title %}Events{% endblock %}
+{% block content %}
+<div class="events-page">
+    <div class="grid-x grid-margin-x grid-padding-x">
+        {% for event in events %}
+        <div class="cell small-12 medium-12">
+            <div class="event grid-x">
+                <div class="event-header small-12 grid-x grid-padding-x   ">
+                    <div class="cell small-2  text-center">
+                        <div class="day-month">
+                            <div class="month">{{ event.start|date:'M' }}</div>
+                            <div class="day">{{ event.start|date:'j' }}</div>
+                        </div>
+                    </div>
+                    <div class="cell small-7 event-details">
+                        <div class="cell small-12 event-details">
+                            <h5>
+                                <a href="{% url 'events:EventDetail' event.pk %}">{{ event.title|truncatechars:40 }}</a>
+                            </h5>
+                        </div>
+                        <p class="event-duration">From:
+                            <i class="fa fa-calendar"></i> {{ event.start|date:'M. j, o, h:i A' }} <br>
+                            To: <i class="fa fa-calendar"></i>  {{ event.end|date:'M. j, o, h:i A' }}</p>
+                        <p class="event-address">
+                            <a href="{% url 'places:PlaceDetail' event.location.pk %}" style="color: #000;">
+                                <i class="fa fa-map-marker"></i> &nbsp;{{ event.location.location }}
+                            </a>
+                        </p>
+
+                    </div>
+                    <div class="cell small-3">
+                        <p class="event-price text-center">
+                            {% if event.price %}
+                                ${{ event.price }}
+                            {% else %}
+                                Free
+                            {% endif %}
+                            <br><span style="font-size: 0.9rem;">available seats: {{ event.available_seats }}</span>
+                        </p>
+                        <a href="#" class="button rsvp-button" data-open="joinEventModal{{ forloop.counter0 }}">RSVP</a>
+                        <div id="joinEventModal{{ forloop.counter0 }}" data-reveal class="reveal joinEventModals">
+                            <h4>please specify the number of tickets.</h4>
+                            <label for="tickets">Tickets: </label>
+                            <input type="number" name="tickets" value="1" min="1" max="{{ event.limit }}" class="input tickets">
+                            {% if event.price %}
+                            <button class="button rsvp-button-pay" type="button" data-price="{{ event.price_in_cents }}"
+                                    data-url="{% url 'events:EventJoin' event.pk %}" >RSVP</button>
+                            {% else %}
+                            <button class="button rsvp-button-finish" data-url="{% url 'events:EventJoin' event.pk %}"
+                                    type="button">RSVP</button>
+                            {% endif %}
+
+                            <button class="close-button" data-close aria-label="Close modal" type="button">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+{#                        <form action="{% url 'events:EventJoin' event.pk %}" method="post">#}
+{#                        {% if event.price %}#}
+{#                          <script#}
+{#                            src="https://checkout.stripe.com/checkout.js" class="stripe-button"#}
+{#                            data-key="{{ api_key }}"#}
+{#                            data-amount="{{ event.price_in_cents }}"#}
+{#                            data-name="Gemspedia"#}
+{#                            data-description="charge for {{ event.title|truncatechars:20 }} Event"#}
+{#                            data-image="{% static 'images/logo1.png' %}" {#https://stripe.com/img/documentation/checkout/marketplace.png#}
+{#                            data-locale="auto">#}
+{#                          </script>#}
+{#                        {% endif %}#}
+{#                        </form>#}
+                        </div>
+                    </div>
+                </div>
+                <div class="cell small-11 small-offset-1 ">
+                    <p class="event-description">{{ event.description|safe|truncatewords:30 }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+    <script src="https://checkout.stripe.com/checkout.js"></script>
+    {{ block.super }}
+    <script>
+    jQuery(document).ready(function($){
+        var csrf = $("{% csrf_token %}").val();
+        var handler = StripeCheckout.configure({
+          key: '{{ api_key }}',
+          image: '{% static 'images/logo1.png' %}',
+          locale: 'auto',
+          token: function(token) {
+              var data = {
+                  'csrfmiddlewaretoken': csrf, 'stripeToken': token.id, 'tickets': tickets
+              }
+              $.post({
+                  url: url, data: data,
+              });
+          }
+        });
+        $('.joinEventModals').each(function(){
+            $(this).on('open.zf.reveal', function() {
+                $('.rsvp-button-pay', this).click(function(e) {
+                    {#var tickets = $('.tickets', this).val();#}
+                    {#var url = $(this).data('url');#}
+                    var price = $(this).data('price');
+                    handler.open({
+                        name: 'Gemspedia',
+                        description: 'Example Charge',
+                        amount: price,
+                    });
+                    e.preventDefault();
+                });
+                $('.rsvp-button-finish', this).click(function(e) {
+                    var tickets = $('.tickets', this).val();
+                    var url = $(this).data('url');
+                    $.post(url, {'csrfmiddlewaretoken': csrf, 'tickets': tickets});
+                    e.preventDefault();
+                });
+            });
+        });
+        window.addEventListener('popstate', function() {
+            handler.close();
+        });
+    });
+    </script>
+{% endblock %}

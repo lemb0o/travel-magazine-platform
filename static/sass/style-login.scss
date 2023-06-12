@@ -1,0 +1,95 @@
+$primaryColor: #333;
+$secondryColor: #fff;
+$actionColor: #ff3c36;
+$linkColor: #07e;
+$transition: all .3s ease-in-out;
+$FontFamily: 'Work Sans', sans-serif;
+
+body {
+  font-family: $FontFamily;
+  a {
+    font-family: $FontFamily;
+  }
+  @for $i from 1 through 6 {
+    h#{$i} {
+      font-family: $FontFamily;
+    }
+  }
+
+}
+.nav {
+    box-shadow: 0 5px 25px 0 rgba(46, 61, 73, .2);
+    .logo {
+      a {
+        display: block;
+        text-align: center;
+        margin: auto;
+        max-width: 140px;
+        img {
+          max-height: 75px;
+        }
+      }
+    }
+  }
+  .signup-form {
+    padding-top: 20px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 25px 0 rgba(46, 61, 73, .2);
+    transition: box-shadow .2s ease-in-out;
+    overflow: hidden;
+    &:hover {
+      box-shadow: 2px 4px 8px 0 rgba(46, 61, 73, .2);
+    }
+    margin: 50px auto;
+    .button {
+      background-color: $actionColor;
+      border-radius: 5px;
+      box-shadow: 5px 5px 25px 0 rgba(46, 61, 73, .2);
+      transition: box-shadow .2s ease-in-out;
+      overflow: hidden;
+      &:hover {
+        box-shadow: 2px 4px 8px 0 rgba(46, 61, 73, .2);
+      }
+    }
+    .forgot-password {
+      display: inline;
+      padding-bottom: 8px;
+    }
+  }
+
+  .signin-form {
+    padding-top: 20px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 25px 0 rgba(46, 61, 73, .2);
+    transition: box-shadow .2s ease-in-out;
+    overflow: hidden;
+    &:hover {
+      box-shadow: 2px 4px 8px 0 rgba(46, 61, 73, .2);
+    }
+    margin: 50px auto;
+    .button {
+      background-color: $actionColor;
+      border-radius: 5px;
+      box-shadow: 5px 5px 25px 0 rgba(46, 61, 73, .2);
+      transition: box-shadow .2s ease-in-out;
+      overflow: hidden;
+      &:hover {
+        box-shadow: 2px 4px 8px 0 rgba(46, 61, 73, .2);
+      }
+    }
+    .forgot-password {
+      display: inline;
+      padding-bottom: 8px;
+    }
+  }
+
+  // -------------------- Media Queries -------------------
+  /* Medium and up */
+  @media screen and (min-width: 40em) {
+    .signup-form {
+      width: 50%;
+    }
+    .signin-form {
+      width: 25%;
+    }
+  }

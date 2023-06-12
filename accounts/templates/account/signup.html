@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Sign Up{% endblock %}</title>
+    <link href="{% static 'css/foundation.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/style-login.css' %}" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div class="nav">
+        <div class="logo">
+            <a href="/"> <img src="{% static 'images/logo.png' %}">
+            </a>
+        </div>
+    </div>
+    {% block content %}
+        <div class="signup-form">
+            <form method="POST" enctype="multipart/form-data">
+                <div class="grid-x grid-padding-x">
+                    <h2 class="cell small-12">Sign Up</h2>
+                    <p class="cell small-12"> Create your Account.</p>
+                    <p class="cell small-12">
+                        Already have an account? Then please <a href="{{ login_url }}">sign in</a>.
+                    </p>
+                    {% for error in form.errors %}<div class="cell small-12">{{ error }}</div>{% endfor %}
+                    {% csrf_token %}
+                    <div class="cell small-6">{{ form.first_name }}</div>
+                    <div class="cell small-6">{{ form.last_name }}</div>
+                    {{ form.first_name.error }} {{ form.last_name.error }}
+                    <div class="cell small-12">{{ form.username }}</div> {{ form.username.error }}
+                    <div class="cell small-12">{{ form.email }}</div> {{ form.email.error }}
+                    <div class="cell small-12">{{ form.password }}</div> {{ form.password.error }}
+                    <div class="cell small-12">{{ form.passwrod2 }}</div> {{ form.password2.error }}
+                    <div class="cell small-12"><button class="button" type="submit">Sign Up</button></div>
+                </div>
+            </form>
+        </div>
+    {% endblock %}
+</body>
+{% block scripts %}
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/foundation.js' %}"></script>
+{% endblock %}
+</html>

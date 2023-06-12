@@ -1,0 +1,23 @@
+
+create virtual environment: 
+    virtualenv magazine-env
+
+install requirements:
+    pip3 install -r Magazine/requirements.txt
+
+migrate all django models:
+    python3 manage.py makemigrations
+    python3 manage.py migrate
+
+if the migration didn't migrate the applications' models do this:
+    python3 manage.py makemigrations accounts articles places events multimedia travels
+
+create superuser:
+    python3 manage.py createsuperuser
+    
+you'll be prompted for user information:
+  NOTE1: when prompted for gender type M or F or leave it empty
+  
+
+finally, run the server by:
+    python3 manage.py runserver

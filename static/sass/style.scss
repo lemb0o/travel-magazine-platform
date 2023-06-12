@@ -1,0 +1,795 @@
+$primaryColor: #333;
+$secondryColor: #fff;
+$actionColor: #ff3c36;
+$linkColor: #07e;
+$footerColor: #222;
+$listColor: #999;
+$transition: all .3s ease-in-out;
+$headerFontSize: 1.3rem;
+$FontFamily: 'Work Sans', sans-serif;
+
+
+// ---------------------- Start Base Styling ------------------
+
+
+body {
+  font-family: $FontFamily;
+  a{
+    font-family: $FontFamily;
+  }
+  input:focus{
+    border: 3px solid lighten($actionColor ,25%)!important;
+  }
+}
+.ad {
+  background: #5e5e5e;
+}
+// -------------------------- Start Styling Left Navbar ---------------------
+#leftNavbar{
+  background-color: $secondryColor;
+  overflow-x: hidden;
+  .navbar-brand{
+    font-size: 35px;
+    font-weight: bold;
+    padding: 10px;
+  }
+  ul.accordion-menu{
+    height: 70vh;
+
+    li{
+      border-bottom: 1px solid #DDDDDD;
+      margin-left: 10px;
+      margin-right: 20px;
+      &:last-of-type{
+        border: 0;
+      }
+      a{
+        font-weight: bold;
+        font-size: 20px;
+
+    }
+    }
+  }
+  a{
+    color: $primaryColor;
+    &::after{
+      border-color: $actionColor transparent transparent;
+    }
+  }
+  .button{
+    background-color: $secondryColor;
+    color: $primaryColor;
+  }
+  .social-icons{
+    margin: auto 0;
+    position: absolute;
+
+    h6{
+      color: #777;
+      font-size: 15px;
+    }
+    hr{
+      margin: 2px;
+    }
+    li{
+      margin: 5px;
+      &:hover .button{
+        background: $secondryColor;
+        color: $primaryColor;
+      }
+      .button{
+        transition: $transition;
+        background: $primaryColor;
+        color: $secondryColor;
+        border: 1px solid $primaryColor;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+      }
+    }
+  }
+}
+
+// ------------------------------- Start Styling main navbar --------------------------
+
+.navbar {
+  .button {
+    background: $secondryColor;
+    color: $primaryColor;
+    display: inline-block;
+    margin: 0;
+  }
+  .navbar-brand{
+    a {
+      color: $primaryColor;
+    font-weight: bolder;
+    font-size: 26px;
+      img{
+            max-height:50px;
+      }
+    }
+  }
+  ul {
+    li {
+
+      &:hover a{
+        color: $actionColor;
+      }
+      a {
+        transition: $transition;
+        color: $primaryColor;
+        font-weight: bold;
+      }
+    }
+  }
+}
+//.navs{
+//      box-shadow: 1px 0 5px 1px $primaryColor;
+//}
+
+// ------------------- Start Site Footer Styling -------------------------
+.site-footer{
+  .sitemap{
+    background-color: #222;
+    padding: 50px 0;
+    .social-link{
+      li{
+        a{
+          margin: 10px;
+          border: 1px solid #393939;
+          border-radius: 50%;
+          background-color: #393939;
+          color: white;
+          &:hover{
+            background-color: #222;
+          }
+        }
+      }
+
+    }
+    a{
+      text-transform: uppercase;
+      font-weight: 500;
+      transition: $transition;
+      color: $listColor;
+      &:hover{
+        color: $actionColor;
+      }
+    }
+  }
+  .footer{
+    padding: 50px 0;
+    background-color: $primaryColor;
+    color: $listColor;
+    a{
+      transition: $transition;
+      color: $secondryColor;
+      &:hover{
+        color: $actionColor;
+      }
+    }
+  }
+}
+
+// --------------------------------- Start Styling TO TOP button ------------------------
+
+.to-top{
+  padding: 5px 12px;
+  border: 1px solid $primaryColor;
+  border-radius: 5px;
+  background-color: $secondryColor !important;
+  color: $primaryColor !important;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  margin: 0;
+  display: none;
+  &:hover{
+    background-color: $actionColor !important;
+    color: $secondryColor !important;
+    border-color: $actionColor;
+  }
+  i{
+  font-size: 40px;
+  line-height: 100%
+  }
+  div{
+    font-size: 10px;
+  }
+}
+  // ----------------------- End Styling Base styles -------------------------
+// ------------------------- Start Styling Content --------------------------
+
+#articles {
+  .article{
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    &:first-child .article-img{
+      height: 100%;
+      position: relative;
+      .article-content{
+        position: absolute;
+        left: 20px;
+        bottom: 20px;
+        .article-title,.article-info {
+          background-color: #000000aa;
+          color: $secondryColor;
+
+        }
+        .article-title{
+          font-size: 60px;
+          margin-bottom: 5px;
+          display: inline;
+          a{
+            color: $secondryColor;
+            font-weight: bold;
+            transition: $transition;
+            font-size: 1em;
+          }
+          &:hover a{
+            color: #FF0;
+
+        }
+      }
+        .article-info {
+          display: block;
+
+        }
+    }
+      .article-info{
+        padding: 5px;
+      }
+    }
+    &:not(:first-child){
+      .article-content{
+        padding: 20px;
+        .article-title,.article-info {
+          background-color: $secondryColor;
+          color: $listColor;
+        }
+        .article-title{
+          a{
+            color: #000;
+            font-weight: bold;
+            transition: $transition;
+            font-size: 25px;
+            }
+          &:hover a{
+            color: $actionColor;
+
+        }
+      }
+    }
+    }
+  }
+}
+
+// ------------------------ Start Latest articles styling -----------------------------
+
+.main-content {
+  margin: 2vh 0;
+  h2 {
+    color: $actionColor;
+    font-weight: bold;
+  }
+  .latest-item{
+    .article-item{
+      border-top: 1px solid #DDDDDD;
+    &:last-of-type{
+        border-bottom: 1px solid #DDDDDD;
+    }
+      .article-img{
+        height: 100%;
+        background-size: inherit;
+      }
+    }
+
+  }
+  .article-content{
+        padding: 20px;
+        .article-title,.article-info {
+          background-color: $secondryColor;
+          color: $listColor;
+        }
+        .article-title{
+          a{
+            color: #000;
+            font-weight: bold;
+            transition: $transition;
+            font-size: 25px;
+            }
+          &:hover a{
+            color: $actionColor;
+
+        }
+      }
+    }
+  .article-description{
+    font-size: 1rem;
+  }
+}
+// ------------------------ Start Latest places styling -----------------------------
+
+  .latest-item{
+    .place-item{
+      border-top: 1px solid #DDDDDD;
+    &:last-of-type{
+        border-bottom: 1px solid #DDDDDD;
+    }
+      .place-img{
+        height: 100%;
+        background-size: inherit;
+      }
+    }
+
+  }
+  .place-content{
+        padding: 20px;
+        .place-title,.place-info {
+          background-color: $secondryColor;
+          color: $listColor;
+        }
+        .place-title{
+          a{
+            color: #000;
+            font-weight: bold;
+            transition: $transition;
+            font-size: 25px;
+            }
+          &:hover a{
+            color: $actionColor;
+
+        }
+      }
+    }
+  .place-description{
+    font-size: 1rem;
+  }
+
+
+// ------------------------ Start Upcoming Travels styling -----------------------------
+.travel-header{
+    color: $actionColor;
+    font-weight: bold;
+}
+.upcoming-travels{
+    .travel-item{
+      .travel-img{
+        height: 100%;
+        background-size: inherit;
+        span{
+          padding: 10px;
+          background-color: $actionColor;
+          color: #fff;
+          margin: 10px;
+          font-weight: bold;
+        }
+      }
+      .travel-content{
+        padding: 10px;
+        .travel-title{
+          background-color: $secondryColor;
+          color: $listColor;
+          a{
+            color: $primaryColor;
+            font-weight: bold;
+            transition: $transition;
+            font-size: 1.5rem;
+          }
+          a:hover{
+            color: $actionColor;
+          }
+        }
+        .travel-price {
+          color: $actionColor;
+          font-weight: 700;
+          del {
+            color: $listColor;
+          }
+        }
+      }
+    }
+}
+// ------------------------ Start Right SideBar styling -------------------------------z
+// ------------------------ Start Latest events styling -------------------------------
+.latest-events{
+  .event{
+    margin: 10px 0;
+    border-radius: 5px;
+    box-shadow: 5px 5px 25px 0 rgba(46,61,73,.2);
+    transition: box-shadow .2s ease-in-out;
+    overflow: hidden;
+    &:hover{
+          box-shadow: 2px 4px 8px 0 rgba(46,61,73,.2);
+    }
+    i{
+      font-size: 1rem;
+      color: $actionColor;
+    }
+    .event-header {
+      background: #fff;
+      padding: 10px 0;
+      color: $primaryColor;
+      .day-month {
+        border: 1px solid $actionColor;
+        border-radius: 5px;
+        overflow: hidden;
+        .month {
+          background-color: $actionColor;
+          font-size: 1rem;
+          color: #fff;
+        }
+        .day {
+          background-color: #fff;
+          color: $actionColor;
+          font-size: 1.5rem;
+          font-weight: bold;
+        }
+      }
+      .event-address {
+        padding-top: 10px;
+        font-size: 0.8rem;
+        margin-bottom: 0;
+      }
+
+      .event-details {
+        a {
+          color: #000;
+          transition: $transition;
+          &:hover{
+            color: $actionColor;
+          }
+        }
+        .event-duration {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+
+// ------------------------ Start Trending articles styling -----------------------------
+
+.right-sidebar {
+  h4 {
+    color: $actionColor;
+    font-weight: bold;
+  }
+  .trending-articles{
+    .article-item{
+      border-top: 1px solid #DDDDDD;
+      padding: 10px;
+    &:last-of-type{
+        border-bottom: 1px solid #DDDDDD;
+    }
+      .article-img{
+        height: 100%;
+        background-size: inherit;
+        border-radius: 50%;
+      }
+    }
+
+  }
+  .article-content{
+    padding: 10px;
+    .article-title{
+      background-color: $secondryColor;
+      a{
+        color: #000;
+        font-weight: bold;
+        transition: $transition;
+        font-size: 1.1rem;
+        }
+    }
+  }
+}
+
+// ------------------------ Start pages Styling ----------------------------------
+// ------------------------ Start Events Page Styling ----------------------------
+.events-page{
+  div div:nth-of-type(odd) .event{
+    background-color: #F9F9F9;
+  }
+  .event{
+    padding: 30px;
+    margin: 20px 0;
+    border-radius: 5px;
+    box-shadow: 5px 5px 25px 0 rgba(46,61,73,.2);
+    transition: box-shadow .2s ease-in-out;
+    overflow: hidden;
+    &:hover{
+          box-shadow: 2px 4px 8px 0 rgba(46,61,73,.2);
+    }
+     i{
+      font-size: 1.1rem;
+      color: $actionColor;
+    }
+    .event-header {
+      padding: 10px 0;
+      color: $primaryColor;
+      .day-month {
+        border: 1px solid $actionColor;
+        border-radius: 5px;
+        overflow: hidden;
+        .month {
+          background-color: $actionColor;
+          font-size: 1.1rem;
+          color: #fff;
+        }
+        .day {
+          background-color: #fff;
+          color: $actionColor;
+          font-size: 2rem;
+          font-weight: bold;
+          padding: 0 10px;
+        }
+      }
+      .event-address {
+        padding-top: 10px;
+        font-size: 1rem;
+        margin-bottom: 0;
+      }
+
+      .event-details {
+        a {
+          color: #000;
+          transition: $transition;
+          &:hover{
+            color: $actionColor;
+          }
+        }
+        .event-duration {
+          margin-bottom: 0;
+        }
+      }
+      .event-price{
+        font-weight: bold;
+        font-size: 1.7rem;
+        color: $actionColor;
+      }
+      .button{
+        background-color: $actionColor;
+        padding: 10px;
+        width: 100%;
+        font-size: 1.2rem;
+        border-radius: 5px;
+        box-shadow: 5px 5px 25px 0 rgba(46,61,73,.2);
+        transition: box-shadow .2s ease-in-out;
+    &:hover{
+          box-shadow: 2px 4px 8px 0 rgba(46,61,73,.2);
+    }
+      }
+    }
+    .event-description{
+      padding: 10px 0;
+      color: $listColor;
+
+    }
+  }
+}
+
+// ------------------------- Start Event Page Styling --------------------------------
+.event-page{
+  .caption{
+    padding: 20px 0;
+    h4{
+      font-family: Montserrat ,sans-serif;
+      //font-weight: bold;
+      font-size: 2rem;
+    }
+    p{
+      font-size: 1.3rem;
+    }
+  }
+}
+
+// ------------------------- Start Articles Page Styling -----------------------------
+.articles-page{
+  .article-item{
+    .article-content{
+      border-top: 1px solid #DDDDDD;
+      padding: 10px;
+      &:last-of-type{
+        border-bottom: 1px solid #DDDDDD;
+      }
+      .article-title {
+        a {
+          color: #000;
+          font-weight: bold;
+          transition: $transition;
+          font-size: 25px;
+        }
+        &:hover a {
+          color: $actionColor;
+        }
+      }
+    }
+    .article-description {
+      font-size: 1rem;
+    }
+  }
+}
+
+
+// ------------------------- Start Article Page Styling -----------------------------
+.article-page{
+  .caption{
+    padding: 50px 0;
+    h4{
+      font-family: Montserrat, sans-serif;
+      //font-weight: bold;
+      font-size: 2rem;
+    }
+    p{
+      font-size: 1.3rem;
+    }
+  }
+}
+
+// ------------------------- Start Places Page Styling -----------------------------
+.places-page{
+  .place-item{
+    .place-content{
+      border-top: 1px solid #DDDDDD;
+      padding: 10px;
+      &:last-of-type{
+        border-bottom: 1px solid #DDDDDD;
+      }
+      .place-title{
+        color: #000;
+        font-weight: bold;
+        transition: $transition;
+        font-size: 25px;
+        font-family: Montserrat sans-serif;
+        &:hover{
+          color: $actionColor;
+        }
+      }
+      .place-info {
+        color: $listColor;
+      }
+      .place-description{
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+
+// ------------------------- Start Place Page Styling -----------------------------
+.place-page{
+  .caption{
+    padding: 20px 0;
+    h4{
+      font-family: Montserrat ,sans-serif;
+      //font-weight: bold;
+      font-size: 2rem;
+    }
+    p{
+      font-size: 1.3rem;
+    }
+  }
+}
+
+// ------------------------- Start Travels Page Styling -----------------------------
+.travels-page{
+  .travel-item{
+    .travel-content{
+      border-top: 1px solid #DDDDDD;
+      padding: 10px;
+      &:last-of-type{
+        border-bottom: 1px solid #DDDDDD;
+      }
+      .travel-title {
+        a {
+          color: #000;
+          font-weight: bold;
+          transition: $transition;
+          font-size: 25px;
+        }
+        &:hover a {
+          color: $actionColor;
+        }
+      }
+      .travel-info {
+        color: $listColor;
+      }
+      .travel-price {
+        color: $actionColor;
+        font-weight: 700;
+        display: inline;
+        del {
+          color: $listColor;
+        }
+      }
+      .travel-duration{
+        display: inline;
+        color: $actionColor;
+        font-weight: 700;
+      }
+      .travel-description {
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+// ------------------------- Start Place Page Styling -----------------------------
+.place-page{
+  .caption{
+    padding: 20px 0;
+    h4{
+      font-family: Montserrat ,sans-serif;
+      //font-weight: bold;
+      font-size: 2rem;
+    }
+    p{
+      font-size: 1.3rem;
+    }
+  }
+}
+
+// ------------------------- Start Create & Update forms Styling -------------------
+.forms{
+  .button{
+    background-color: $actionColor;
+  }
+}
+
+
+// ------------------------ Start working with Media Query ----------------------------
+@media screen and (max-width: 39.9375em) {
+    #articles {
+    .article{
+      &:first-child .article-img{
+        height: 40vh;
+        .article-content{
+          .article-title,.article-info {
+
+          }
+          .article-title{
+            a{
+              font-size: 20px;
+              padding-top: 5px;
+            }
+          }
+        }
+        .article-info{
+          padding: 5px;
+        }
+      }
+
+      &:not(:first-child){
+        .article-content{
+          padding: 20px;
+          .article-title,.article-info {
+            background-color: $secondryColor;
+            color: $listColor;
+          }
+          .article-title{
+            a{
+              font-size: 25px;
+              }
+        }
+      }
+      }
+
+    }
+  }
+}
+
+/* Medium and up */
+@media screen and (min-width: 40em) {
+  &:first-child .article-img{
+    height: 100%;
+  }
+}
+/* Medium only */
+@media screen and (min-width: 40em) and (max-width: 63.9375em) {}
+
+/* Large and up */
+@media screen and (min-width: 64em) {}
+
+/* Large only */
+@media screen and (min-width: 64em) and (max-width: 74.9375em) {}
